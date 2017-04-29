@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/home">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:id="@+id/topPanel">
+        <AutoCompleteTextView android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:hint="Enter bird name"
+            android:id="@+id/birdSearch"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/middlePanel"
+        android:orientation="vertical">
+        <!--com.google.android.gms.maps.MapView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/discoverMap">
+        </com.google.android.gms.maps.MapView-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:map="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/discoverMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.example.et.aviato.Home" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Snap!"
+                android:id="@+id/cameraButton"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bottomPanel"
+        android:padding="5dp"
+        android:orientation="vertical"-->
+
+    <!--/LinearLayout-->
+
+</LinearLayout>
