@@ -2,8 +2,10 @@
     <string name="app_name">Aviato</string>
     <string name="title_activity_discover">Discover</string>
     <string-array name="birds_array">
-        <item>Sulphur Crested Cockatoo</item>
+        <item>Baillons Crake</item>
         <item>Blacktailed Godwit</item>
-        <item>Ibis</item>
+        <item>Barking Owl</item>
+        <item>Black Falcon</item>
+        <item>Black Bittern</item>
     </string-array>
 </resources>
