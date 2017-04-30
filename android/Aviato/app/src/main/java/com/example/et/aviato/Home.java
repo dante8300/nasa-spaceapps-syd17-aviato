@@ -2,6 +2,7 @@ package com.example.et.aviato;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -64,6 +65,7 @@ class GetUrlContentTask extends AsyncTask<String, Integer, String> {
             e.printStackTrace();
         }
         try {
+            connection.setDoInput(false);
             connection.setRequestMethod("GET");
         } catch (ProtocolException e) {
             e.printStackTrace();
@@ -79,6 +81,8 @@ class GetUrlContentTask extends AsyncTask<String, Integer, String> {
         }
         BufferedReader rd = null;
         try {
+            int status = connection.getResponseCode();
+            Log.v("NET RESP", "Code is: " + status);
             rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,7 +102,7 @@ class GetUrlContentTask extends AsyncTask<String, Integer, String> {
     }
 
     protected void onPostExecute(String result) {
-        home.displayMessage(result);
+        home.displayMessage("", result);
     }
 }
 
@@ -110,11 +114,18 @@ public class Home extends FragmentActivity implements OnMapReadyCallback, View.O
     private Marker curMarker = null;
     private TextView textView = null;
 
-    public void displayMessage(String message) {
+    public void displayMessage(String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(Home.this).create();
-        alertDialog.setTitle("Bird status");
+        alertDialog.setTitle(title);
         alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "LEARN MORE",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Home.this, BirdInfo.class);
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -203,12 +214,29 @@ public class Home extends FragmentActivity implements OnMapReadyCallback, View.O
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-        Log.v("APP", "SEARCHED!!!");
-            //if (textView.getText().equals("Blacktailed Godwit")) {
-                textView.setText("");
-                new GetUrlContentTask(this).execute("http://eternalthinker.co");
-                return true;
-            //}
-        //return false;
+        Log.v("APP", "SEARCHED!!!" + textView.getText());
+        if (textView.getText().toString().trim().equals("Blacktailed Godwit")) {
+            Log.v("APP", "PROCESSING");
+            textView.setText("");
+            // new GetUrlContentTask(this).execute("http://172.19.131.136:5000/");
+            JSONObject info = sightingPoints.get(curSighting);
+            boolean answer = false;
+            try {
+                Log.v("APP", String.valueOf(info.getJSONObject("result")));
+                answer = info.getJSONObject("result").getBoolean("answer");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String message;
+            String title = answer? "Yep!" : "Nope :(";
+            if (!answer) {
+                message = "Sorry! The Blacktailed Godwit cannot be spotted in this region.";
+            } else {
+                message = "Yay! You can find Blacktailed Godwits in this area!";
+            }
+            displayMessage(title, message);
+            return true;
+        }
+        return false;
     }
 }

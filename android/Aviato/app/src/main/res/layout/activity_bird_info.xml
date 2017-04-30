@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bird_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.et.aviato.BirdInfo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="47dp"
+            android:src="@drawable/aviato_logo"
+            android:adjustViewBounds="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/imageView5" />
+
+        <TextView
+            android:text="Blacktailed Godwit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/btg"
+            android:id="@+id/imageView" />
+
+        <TextView
+            android:padding="5dp"
+            android:text="Nearby habitat: Wetlands"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:text="The black-tailed godwit is a large, long-legged, long-billed shorebird first described by Carl Linnaeus in 1758. It is a member of the Limosa genus, the godwits."
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/track"
+            android:id="@+id/imageView2" />
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

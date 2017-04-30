@@ -2,12 +2,34 @@
   {
     "latitude": -34,
     "longitude": 151,
-    "month": 4
+    "month": 4,
+    "result": {
+        "answer": false
+    }
   },
   {
     "latitude": -151,
     "longitude": 34,
-    "month": 4
+    "month": 4,
+    "result": {
+      "answer": false
+    }
+  },
+  {
+    "latitude": 38,
+    "longitude": -6,
+    "month": 3,
+    "result": {
+      "answer": true
+    }
+  },
+  {
+    "latitude": 65.56,
+    "longitude": -17.31,
+    "month": 3,
+    "result": {
+      "answer": true
+    }
   }
 ]
 
